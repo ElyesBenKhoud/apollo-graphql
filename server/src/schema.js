@@ -1,30 +1,32 @@
 const { gql } = require("apollo-server");
 
-// what is gql : It's a tagged template literal, used for wrapping GraphQL strings like the schema definition we're about to write.
-// This converts GraphQL strings into the format that Apollo libraries expect when working with operations and schemas,
-//and it also enables syntax highlighting.
-
 const typeDefs = gql`
   type Query {
+    "Query to get tracks array for the homepage grid"
     tracksForHome: [Track!]!
   }
-
-  "Track is a group of modules that teaches aout a specific topic"
+  "A track is a group of Modules that teaches about a specific topic"
   type Track {
     id: ID!
+    "The track's title"
     title: String!
+    "The track's main Author"
     author: Author!
+    "The track's illustration to display in track card or track page detail"
     thumbnail: String
+    "The track's approximate length to complete, in minutes"
     length: Int
+    "The number of modules this track contains"
     modulesCount: Int
   }
-
+  "Author of a complete Track or a Module"
   type Author {
     id: ID!
+    "Author's first and last name"
     name: String!
+    "Author's profile picture"
     photo: String
   }
 `;
-//exports
 
 module.exports = typeDefs;
